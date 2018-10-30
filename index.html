@@ -107,8 +107,11 @@
             <div class="section">
               
                 <h1 id="lolex">lolex</h1>
-<p>JavaScript implementation of timing related web APIs.</p>
-<p><strong>Implements:</strong></p>
+<p><strong>lolex</strong> is a JavaScript package within <a href="https://github.com/sinonjs/sinon.js">Sinon.JS</a>
+that uses timing related web APIs.</p>
+<p>For example, use <strong>lolex</strong> to simulate a system clock in your testing environment to control
+the flow of time when your testing scenario requires scheduling semantics.</p>
+<p><strong>lolex</strong> implemnts the following methods:</p>
 <ul>
 <li><a href="#settimeoutcallback-timeout-args"><code>setTimeout</code></a></li>
 <li><a href="#cleartimeoutid"><code>clearTimeout</code></a></li>
@@ -123,17 +126,12 @@
 <li><a href="#queuemicrotaskcallback"><code>queueMicrotask</code></a></li>
 <li><a href="#performancenow"><code>performance.now</code></a></li>
 </ul>
-<p>along with a clock instance that controls the flow of time.
-<strong>lolex</strong> also provides a <a href="#date"><code>Date</code></a> implementation that gets its time from the clock.</p>
-<p><strong>lolex</strong> can be used to simulate passing time in automated tests and other
-situations where you want the scheduling semantics, but don't want to actually
-wait (however, from version 2.0 <strong>lolex</strong> supports those of you who would like to wait too).</p>
-<p><strong>lolex</strong> is a part of <a href="https://github.com/sinonjs/sinon.js">Sinon.JS</a>.</p>
 <h2 id="installation">Installation</h2>
+<p>To install <strong>lolex</strong>, enter the following into the command line:</p>
 <pre><code class="shell">npm install lolex --save-dev
 </code></pre>
 
-<p>You are always free to <a href="https://github.com/sinonjs/lolex/blob/master/package.json#L22">build it yourself</a>, of course.</p>
+<p>Alternately, you can <a href="https://github.com/sinonjs/lolex/blob/master/package.json#L22">build the package yourself</a>.</p>
 <h2 id="usage">Usage</h2>
 <p><strong>lolex</strong> can be used in both Node.js and browser environments.</p>
 <p>In addition in browser environment <strong>lolex</strong> provides a <a href="#performancenow"><code>performance</code></a> implementation that gets its time from the clock.
@@ -147,8 +145,9 @@ available in the repo and the npm package.</p>
 &lt;/script&gt;
 </code></pre>
 
-<p>To use <strong>lolex</strong>, create a new clock, schedule events on it using the timer
-functions and pass time using the <a href="#tick"><code>tick</code></a> method.</p>
+<p>The following code sample creates a new clock, schedules an event with the
+<a href="#setTimeout"><code>setTimeout</code> </a> function, and moves the clock ahead using the
+<a href="#tick"><code>tick</code></a> method:</p>
 <pre><code class="js">// In the browser distribution, a global lolex is already available
 var lolex = require(&quot;lolex&quot;);
 
@@ -163,12 +162,13 @@ clock.setTimeout(function () {
 clock.tick(15);
 </code></pre>
 
-<p>Upon executing the last line, an interesting fact about the
-<a href="http://en.wikipedia.org/wiki/Poblano">Poblano</a> will be printed synchronously to
-the screen. If you want to simulate asynchronous behavior, you have to use your
-imagination when calling the various functions.</p>
-<p>The <a href="#next"><code>next</code></a>, <a href="#runall"><code>runAll</code></a>, <a href="#runtoframe"><code>runToFrame</code></a>, and <a href="#runtolast"><code>runToLast</code></a> methods are available to advance the clock.
-See the <a href="#clock-api">clock API Reference</a> for more details.</p>
+<p><strong>NOTE:</strong>  In the browser distribution, a global <strong>lolex</strong> clock is available by default.</p>
+<p>After the last line is executed, an interesting fact about the <a href="http://en.wikipedia.org/wiki/Poblano">Poblano</a>
+pepper is displayed on the screen.
+If you want to simulate asynchronous behavior, you have to use your imagination when calling the various functions.</p>
+<p>In addition to the <a href="#tick"><code>tick</code></a> method, the <a href="#next"><code>next</code></a>, <a href="#runall"><code>runAll</code></a>, <a href="#runtoframe"><code>runToFrame</code></a>,
+and <a href="#runtolast"><code>runToLast</code></a> methods are available to advance the clock.
+See the <a href="#clock-api"><code>clock API Reference</code></a> for more details.</p>
 <h3 id="faking-native-timers">Faking native timers</h3>
 <p>When using <strong>lolex</strong> to test timers, you will most likely want to replace the native
 timers such that calling <code>setTimeout</code> actually schedules a callback with your
@@ -420,5 +420,5 @@ object but using the clock to provide the correct time.</p>
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2018-10-25 21:55:00
+Build Date UTC : 2018-10-30 21:30:26
 -->
